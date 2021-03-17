@@ -11,12 +11,17 @@ app.use(express.json());
 app.use(express.static("public"));
 app.use(logger("dev"));
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", {
-  useNewUrlParser: true,
-  useFindAndModify: false
-});
+mongoose.connect(
+  process.env.MONGODB_URI || 'mongodb://localhost/FitnessTracker',
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+    useFindAndModify: false
+  }
+);
 
-// routes
+
 require("./routes/views")(app);
 require("./routes/api")(app);
 
